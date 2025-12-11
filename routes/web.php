@@ -19,12 +19,15 @@ use App\Http\Controllers\ClientController;
 
 // Public routes
 Route::get('/', function () {
-    return redirect('/masuk');
+    return view('landing');
 });
 
 // Authentication routes
-Route::get('/masuk', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/masuk', [AuthController::class, 'login']);
+Route::get('/masuk', [AuthController::class, 'showLayananLogin'])->name('login.portal');
+Route::get('/masuk/admin', [AuthController::class, 'showAdminLogin'])->name('login.admin');
+Route::get('/masuk/profesional', [AuthController::class, 'showProfesionalLogin'])->name('login.profesional');
+Route::get('/masuk/klien', [AuthController::class, 'showKlienLogin'])->name('login'); // Default login name
+Route::post('/masuk', [AuthController::class, 'login'])->name('login.attempt');
 Route::get('/daftar', [AuthController::class, 'showRegistrationForm'])->name('register');
 Route::post('/daftar', [AuthController::class, 'register']);
 Route::post('/keluar', [AuthController::class, 'logout'])->name('logout');
@@ -42,6 +45,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/laporan', [AdminController::class, 'laporanIndex'])->name('laporan.index');
         Route::get('/laporan/menunggu', [AdminController::class, 'laporanMenunggu'])->name('laporan.menunggu');
         Route::get('/laporan/{id}', [AdminController::class, 'laporanShow'])->name('laporan.show');
+        Route::get('/laporan/{id}/edit', [AdminController::class, 'laporanEdit'])->name('laporan.edit');
+        Route::put('/laporan/{id}', [AdminController::class, 'laporanUpdate'])->name('laporan.update');
+        Route::delete('/laporan/{id}', [AdminController::class, 'laporanDestroy'])->name('laporan.destroy');
         Route::put('/laporan/{id}/status', [AdminController::class, 'laporanUpdateStatus'])->name('laporan.update-status');
         Route::post('/laporan/{id}/assign', [AdminController::class, 'assignProfesional'])->name('laporan.assign');
         
@@ -81,6 +87,10 @@ Route::middleware(['auth'])->group(function () {
     // Klien routes
     Route::prefix('klien')->name('klien.')->middleware('role:klien')->group(function () {
         Route::get('/dashboard', [ClientController::class, 'dashboard'])->name('dashboard');
+        
+        // Profile routes
+        Route::get('/profil', [ClientController::class, 'editProfile'])->name('profile.edit');
+        Route::put('/profil', [ClientController::class, 'updateProfile'])->name('profile.update');
         
         // Laporan routes
         Route::get('/laporan-saya', [ClientController::class, 'laporanIndex'])->name('laporan.index');

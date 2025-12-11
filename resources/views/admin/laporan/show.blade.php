@@ -19,6 +19,16 @@
             </p>
         </div>
         <div>
+            <form action="{{ route('admin.laporan.destroy', $laporan->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus laporan ini? Tindakan ini tidak dapat dibatalkan.');">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger mr-2">
+                    <i class="fas fa-trash"></i> Hapus
+                </button>
+            </form>
+            <a href="{{ route('admin.laporan.edit', $laporan->id) }}" class="btn btn-warning mr-2">
+                <i class="fas fa-edit"></i> Edit
+            </a>
             <a href="{{ route('admin.laporan.index') }}" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Kembali ke Daftar
             </a>

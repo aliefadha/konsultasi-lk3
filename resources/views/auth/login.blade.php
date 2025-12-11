@@ -14,6 +14,7 @@
                     <div class="card-body p-5">
                         <div class="text-center mb-4">
                             <h2 class="fw-bold text-primary">LK3</h2>
+                            <h5 class="text-secondary">{{ $title ?? 'Masuk' }}</h5>
                         </div>
 
                         @if(session('success'))
@@ -28,8 +29,12 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="{{ route('login') }}">
+                        <form method="POST" action="{{ route('login.attempt') }}">
                             @csrf
+                            
+                            @if(isset($role))
+                                <input type="hidden" name="role" value="{{ $role }}">
+                            @endif
                             
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>

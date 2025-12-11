@@ -10,12 +10,44 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
+    /**
+     * Show login portal (now redirects to default login).
+     */
+    public function showLayananLogin()
+    {
+        return redirect()->route('login');
+    }
+
+    /**
+     * Show admin login form.
+     */
+    public function showAdminLogin()
+    {
+        return view('auth.login', ['title' => 'Masuk Admin', 'role' => User::ROLE_ADMIN]);
+    }
+
+    /**
+     * Show profesional login form.
+     */
+    public function showProfesionalLogin()
+    {
+        return view('auth.login', ['title' => 'Masuk Profesional', 'role' => User::ROLE_PROFESIONAL]);
+    }
+
+    /**
+     * Show klien login form.
+     */
+    public function showKlienLogin()
+    {
+        return view('auth.login', ['title' => 'Masuk Klien', 'role' => User::ROLE_KLIEN]);
+    }
+
      /**
-     * Show login form.
+     * Show generic login form (redirects to portal).
      */
     public function showLoginForm()
     {
-        return view('auth.login');
+        return redirect('/masuk');
     }
 
     /**
@@ -26,6 +58,7 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required|min:6',
+            'role' => 'nullable|in:' . implode(',', [User::ROLE_ADMIN, User::ROLE_PROFESIONAL, User::ROLE_KLIEN]),
         ]);
 
         if ($validator->fails()) {
@@ -37,6 +70,18 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         
         if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+
+            // Enforce role check if a specific role login was used
+            if ($request->has('role') && $user->role !== $request->role) {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                return redirect()->back()
+                    ->withErrors(['email' => 'Akun Anda tidak memiliki akses untuk role ini.'])
+                    ->withInput();
+            }
+
             $request->session()->regenerate();
             return redirect()->intended('/dashboard')->with('success', 'Berhasil masuk ke sistem.');
         }

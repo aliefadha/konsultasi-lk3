@@ -8,6 +8,7 @@ use App\Models\LampiranLaporan;
 use App\Http\Requests\LaporanRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class ClientController extends Controller
@@ -85,6 +86,34 @@ class ClientController extends Controller
     {
         $user = Auth::user();
         
+        // Update user profile information if changed
+        $userUpdated = false;
+        $updateData = [];
+
+        if ($user->name !== $request->nama_lengkap) {
+            $updateData['name'] = $request->nama_lengkap;
+            $userUpdated = true;
+        }
+
+        if ($user->email !== $request->email) {
+            $updateData['email'] = $request->email;
+            $userUpdated = true;
+        }
+
+        if ($user->no_telepon !== $request->no_telepon) {
+            $updateData['no_telepon'] = $request->no_telepon;
+            $userUpdated = true;
+        }
+
+        if ($user->alamat !== $request->alamat) {
+            $updateData['alamat'] = $request->alamat;
+            $userUpdated = true;
+        }
+
+        if ($userUpdated) {
+            $user->update($updateData);
+        }
+
         // Create the laporan record
         $laporan = LaporanKasus::create([
             'pengguna_id' => $user->id,
@@ -116,6 +145,11 @@ class ClientController extends Controller
 
         $successMessage = 'Laporan berhasil dibuat dan sedang menunggu tinjauan dari tim LK3.';
         
+        // Add information about profile update if any
+        if ($userUpdated) {
+            $successMessage .= ' Profil Anda juga telah diperbarui.';
+        }
+
         // Add information about lampiran if any were uploaded
         if ($request->hasFile('lampiran')) {
             $fileCount = count($request->file('lampiran'));
@@ -192,5 +226,50 @@ class ClientController extends Controller
         ]);
 
         return back()->with('success', 'Pesan berhasil dikirim.');
+    }
+
+    /**
+     * Show the profile edit form.
+     */
+    public function editProfile()
+    {
+        $user = Auth::user();
+        return view('klien.profile', compact('user'));
+    }
+
+    /**
+     * Update the user's profile.
+     */
+    public function updateProfile(Request $request)
+    {
+        $user = Auth::user();
+        
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:pengguna,email,' . $user->id,
+            'no_telepon' => 'nullable|string|max:20',
+            'alamat' => 'nullable|string|max:500',
+            'tanggal_lahir' => 'nullable|date',
+            'jenis_kelamin' => 'nullable|in:L,P',
+            'password' => 'nullable|string|min:8|confirmed',
+        ]);
+
+        $updateData = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'no_telepon' => $request->no_telepon,
+            'alamat' => $request->alamat,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'jenis_kelamin' => $request->jenis_kelamin,
+        ];
+
+        // Only update password if provided
+        if ($request->filled('password')) {
+            $updateData['password'] = Hash::make($request->password);
+        }
+
+        $user->update($updateData);
+
+        return redirect()->route('klien.profile.edit')->with('success', 'Profil berhasil diperbarui.');
     }
 }

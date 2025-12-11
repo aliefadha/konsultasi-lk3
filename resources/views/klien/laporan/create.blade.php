@@ -23,24 +23,32 @@
             <form action="{{ route('klien.laporan.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 
-                <!-- Personal Information (Read-only from user profile) -->
+                <!-- Personal Information -->
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="nama_lengkap">Nama Lengkap</label>
-                            <input type="text" class="form-control bg-light" 
+                            <label for="nama_lengkap">Nama Lengkap <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control @error('nama_lengkap') is-invalid @enderror" 
                                    id="nama_lengkap" 
-                                   value="{{ auth()->user()->name }}" readonly>
-                            <small class="form-text text-muted">Data diambil dari profil Anda</small>
+                                   name="nama_lengkap"
+                                   value="{{ old('nama_lengkap', auth()->user()->name) }}" 
+                                   placeholder="Masukkan nama lengkap Anda">
+                            @error('nama_lengkap')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="no_telepon">Nomor Telepon</label>
-                            <input type="tel" class="form-control bg-light" 
+                            <label for="no_telepon">Nomor Telepon <span class="text-danger">*</span></label>
+                            <input type="tel" class="form-control @error('no_telepon') is-invalid @enderror" 
                                    id="no_telepon" 
-                                   value="{{ auth()->user()->no_telepon ?? '-' }}" readonly>
-                            <small class="form-text text-muted">Data diambil dari profil Anda</small>
+                                   name="no_telepon"
+                                   value="{{ old('no_telepon', auth()->user()->no_telepon ?? '') }}" 
+                                   placeholder="Masukkan nomor telepon Anda">
+                            @error('no_telepon')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -48,19 +56,28 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="alamat">Alamat</label>
-                            <textarea class="form-control bg-light" 
-                                      id="alamat" rows="3" readonly>{{ auth()->user()->alamat ?? '-' }}</textarea>
-                            <small class="form-text text-muted">Data diambil dari profil Anda</small>
+                            <label for="alamat">Alamat <span class="text-danger">*</span></label>
+                            <textarea class="form-control @error('alamat') is-invalid @enderror" 
+                                      id="alamat" 
+                                      name="alamat" 
+                                      rows="3" 
+                                      placeholder="Masukkan alamat lengkap Anda">{{ old('alamat', auth()->user()->alamat ?? '') }}</textarea>
+                            @error('alamat')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control bg-light" 
+                            <label for="email">Email <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" 
                                    id="email" 
-                                   value="{{ auth()->user()->email }}" readonly>
-                            <small class="form-text text-muted">Data diambil dari profil Anda</small>
+                                   name="email"
+                                   value="{{ old('email', auth()->user()->email) }}" 
+                                   placeholder="Masukkan email Anda">
+                            @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -168,13 +185,6 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                     <small class="form-text text-muted">Deskripsikan kejadian secara detail. Informasi ini akan membantu tim LK3 dalam memberikan bantuan yang tepat.</small>
-                </div>
-
-                <div class="form-group">
-                    <label for="catatan_tambahan">Catatan Tambahan (Opsional)</label>
-                    <textarea class="form-control" id="catatan_tambahan" name="catatan_tambahan" rows="3" 
-                              placeholder="Informasi tambahan yang ingin Anda sampaikan...">{{ old('catatan_tambahan') }}</textarea>
-                    <small class="form-text text-muted">Berikan informasi tambahan jika diperlukan</small>
                 </div>
 
                 <!-- Lampiran File Upload -->

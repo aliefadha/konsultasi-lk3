@@ -23,7 +23,16 @@ class LaporanRequest extends FormRequest
      */
     public function rules()
     {
+        $user = $this->user();
+        
         return [
+            // Personal Information
+            'nama_lengkap' => 'required|string|max:255|min:2',
+            'email' => 'required|string|email|max:255|unique:pengguna,email,' . ($user ? $user->id : 'NULL'),
+            'no_telepon' => 'required|string|max:20|min:10',
+            'alamat' => 'required|string|max:500|min:10',
+            
+            // Report Information
             'judul' => 'required|string|max:255|min:5',
             'jenis_kekerasan' => 'required|in:fisik,psikis,seksual,ekonomi,penelantaran,lainnya',
             'hubungan_pelaku' => 'required|in:pasangan,mantan_pasangan,keluarga,teman,atasan,lainnya',
@@ -42,6 +51,29 @@ class LaporanRequest extends FormRequest
     public function messages()
     {
         return [
+            // Personal Information Messages
+            'nama_lengkap.required' => 'Nama lengkap wajib diisi.',
+            'nama_lengkap.string' => 'Nama lengkap harus berupa teks.',
+            'nama_lengkap.max' => 'Nama lengkap maksimal 255 karakter.',
+            'nama_lengkap.min' => 'Nama lengkap minimal 2 karakter.',
+            
+            'email.required' => 'Email wajib diisi.',
+            'email.string' => 'Email harus berupa teks.',
+            'email.email' => 'Format email tidak valid.',
+            'email.max' => 'Email maksimal 255 karakter.',
+            'email.unique' => 'Email sudah digunakan oleh pengguna lain.',
+            
+            'no_telepon.required' => 'Nomor telepon wajib diisi.',
+            'no_telepon.string' => 'Nomor telepon harus berupa teks.',
+            'no_telepon.max' => 'Nomor telepon maksimal 20 karakter.',
+            'no_telepon.min' => 'Nomor telepon minimal 10 karakter.',
+            
+            'alamat.required' => 'Alamat wajib diisi.',
+            'alamat.string' => 'Alamat harus berupa teks.',
+            'alamat.max' => 'Alamat maksimal 500 karakter.',
+            'alamat.min' => 'Alamat minimal 10 karakter.',
+            
+            // Report Information Messages
             'judul.required' => 'Judul laporan wajib diisi.',
             'judul.string' => 'Judul harus berupa teks.',
             'judul.max' => 'Judul maksimal 255 karakter.',
@@ -78,6 +110,13 @@ class LaporanRequest extends FormRequest
     public function attributes()
     {
         return [
+            // Personal Information
+            'nama_lengkap' => 'Nama Lengkap',
+            'email' => 'Email',
+            'no_telepon' => 'Nomor Telepon',
+            'alamat' => 'Alamat',
+            
+            // Report Information
             'judul' => 'Judul',
             'jenis_kekerasan' => 'Jenis Kekerasan',
             'hubungan_pelaku' => 'Hubungan dengan Pelaku',
