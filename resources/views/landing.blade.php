@@ -21,7 +21,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="/">Pelayanan Konsultasi KDRT</a>
+            <a class="navbar-brand fw-bold" href="/">Pelayanan LK3</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -50,17 +50,17 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <h2 class="mb-4">Apa itu KDRT?</h2>
+                    <h2 class="mb-4">Apa itu LK3?</h2>
                     <p class="text-secondary" style="font-size: 1.1rem; line-height: 1.8;">
-                        Kekerasan Dalam Rumah Tangga (KDRT) adalah setiap perbuatan terhadap seseorang terutama perempuan, yang berakibat timbulnya kesengsaraan atau penderitaan secara fisik, seksual, psikologis, dan/atau penelantaran rumah tangga termasuk ancaman untuk melakukan perbuatan, pemaksaan, atau perampasan kemerdekaan secara melawan hukum dalam lingkup rumah tangga.
+                        LK3 (Lembaga Konsultasi Kesejahteraan Keluarga) adalah lembaga layanan sosial yang berada di bawah Dinas Sosial yang berfungsi memberikan konsultasi, pendampingan, perlindungan, dan solusi terhadap berbagai permasalahan keluarga serta masalah sosial di masyarakat.
                     </p>
                 </div>
                 <div class="col-lg-6">
                     <div class="card bg-danger text-white border-0 shadow">
                         <div class="card-body p-5">
-                            <h3>Anda Tidak Sendirian</h3>
+                            <h3>Bantuan pelayanan</h3>
                             <p class="mb-4">Hukum melindungi Anda. UU No. 23 Tahun 2004 tentang Penghapusan KDRT menjamin perlindungan bagi korban.</p>
-                            <a href="/daftar" class="btn btn-light text-danger fw-bold w-100">Cari Bantuan Sekarang</a>
+                            <a href="/daftar" class="btn btn-light text-danger fw-bold w-100">Lapor Sekarang</a>
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,161 @@
         </div>
     </section>
 
+    <!-- Tujuan LK3 Section -->
     <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Tujuan LK3</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger mb-3">Meningkatkan Kesejahteraan</h5>
+                            <p class="card-text small text-secondary">Membantu keluarga mencapai kondisi sosial, ekonomi, dan psikologis yang lebih baik.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger mb-3">Mencegah Masalah Sosial</h5>
+                            <p class="card-text small text-secondary">Menangani konflik rumah tangga, kekerasan, masalah anak, dan hubungan antar keluarga.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger mb-3">Dukungan Psikososial</h5>
+                            <p class="card-text small text-secondary">LK3 memberikan layanan konseling dan pendampingan kepada keluarga maupun individu.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger mb-3">Perlindungan Kelompok Rentan</h5>
+                            <p class="card-text small text-secondary">Melindungi anak terlantar, lansia, korban kekerasan, penyandang disabilitas, dll.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fungsi LK3 Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Fungsi LK3</h2>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm hover-shadow transition">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="badge bg-danger rounded-circle p-3 me-3" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">1</span>
+                                <h5 class="card-title mb-0">Konsultasi Keluarga</h5>
+                            </div>
+                            <p class="card-text text-secondary mb-3">Membantu keluarga mengatasi:</p>
+                            <ul class="text-secondary small ps-3">
+                                <li>Konflik rumah tangga</li>
+                                <li>Masalah komunikasi</li>
+                                <li>Perceraian atau perselisihan</li>
+                                <li>Masalah anak atau remaja</li>
+                                <li>Kesehatan mental keluarga</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="badge bg-danger rounded-circle p-3 me-3" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">2</span>
+                                <h5 class="card-title mb-0">Layanan Pengaduan</h5>
+                            </div>
+                            <p class="card-text text-secondary mb-3">Menerima aduan mengenai:</p>
+                            <ul class="text-secondary small ps-3">
+                                <li>KDRT</li>
+                                <li>Anak terlantar</li>
+                                <li>Lansia terlantar</li>
+                                <li>Masalah sosial lainnya</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="badge bg-danger rounded-circle p-3 me-3" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">3</span>
+                                <h5 class="card-title mb-0">Mediasi Konflik</h5>
+                            </div>
+                            <p class="card-text text-secondary">LK3 dapat menjadi pihak penengah untuk menyelesaikan konflik secara damai dan kekeluargaan.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="badge bg-danger rounded-circle p-3 me-3" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">4</span>
+                                <h5 class="card-title mb-0">Pendampingan Psikososial</h5>
+                            </div>
+                            <p class="card-text text-secondary mb-3">Terutama untuk:</p>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-light text-dark border">Korban kekerasan</span>
+                                <span class="badge bg-light text-dark border">Korban bullying</span>
+                                <span class="badge bg-light text-dark border">Korban bencana sosial</span>
+                                <span class="badge bg-light text-dark border">Penerima manfaat Dinsos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="badge bg-danger rounded-circle p-3 me-3" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">5</span>
+                                <h5 class="card-title mb-0">Rujukan Layanan</h5>
+                            </div>
+                            <p class="card-text text-secondary mb-3">Rujukan penanganan khusus ke:</p>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-light text-dark border">Psikolog / psikiater</span>
+                                <span class="badge bg-light text-dark border">Pusat layanan terpadu</span>
+                                <span class="badge bg-light text-dark border">Rumah sakit</span>
+                                <span class="badge bg-light text-dark border">Kepolisian</span>
+                                <span class="badge bg-light text-dark border">Lembaga sosial lain</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jenis Permasalahan Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Jenis Permasalahan yang Ditangani</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <span class="px-4 py-2 bg-white rounded-pill shadow-sm text-secondary border">Kekerasan dalam rumah tangga (KDRT)</span>
+                        <span class="px-4 py-2 bg-white rounded-pill shadow-sm text-secondary border">Anak berhadapan dengan hukum</span>
+                        <span class="px-4 py-2 bg-white rounded-pill shadow-sm text-secondary border">Anak putus sekolah</span>
+                        <span class="px-4 py-2 bg-white rounded-pill shadow-sm text-secondary border">Lansia terlantar</span>
+                        <span class="px-4 py-2 bg-white rounded-pill shadow-sm text-secondary border">Konseling pra-nikah</span>
+                        <span class="px-4 py-2 bg-white rounded-pill shadow-sm text-secondary border">Konseling pasca perceraian</span>
+                        <span class="px-4 py-2 bg-white rounded-pill shadow-sm text-secondary border">Perselisihan keluarga</span>
+                        <span class="px-4 py-2 bg-white rounded-pill shadow-sm text-secondary border">Pengasuhan anak</span>
+                        <span class="px-4 py-2 bg-white rounded-pill shadow-sm text-secondary border">Masalah adiksi</span>
+                        <span class="px-4 py-2 bg-white rounded-pill shadow-sm text-secondary border">Masalah sosial masyarakat</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
         <div class="container">
             <h2 class="text-center mb-5">Bentuk-Bentuk Kekerasan</h2>
             <div class="row g-4">

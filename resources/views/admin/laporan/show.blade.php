@@ -1,6 +1,6 @@
 @extends('layouts.sbadmin')
 
-@section('title', 'Detail Laporan #' . $laporan->id . ' - LK3')
+@section('title', 'Detail Laporan - LK3')
 
 @section('dashboardLink', route('admin.dashboard'))
 @section('sidebarBrandLink', route('admin.dashboard'))
@@ -9,15 +9,6 @@
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div>
-            <h1 class="h3 mb-0 text-gray-800">
-                <i class="fas fa-file-alt text-primary"></i> Detail Laporan #{{ $laporan->id }}
-            </h1>
-            <p class="text-muted mb-0">
-                Dilaporkan pada {{ $laporan->created_at->format('d/m/Y H:i') }} 
-                ({{ $laporan->created_at->diffForHumans() }})
-            </p>
-        </div>
         <div>
             <form action="{{ route('admin.laporan.destroy', $laporan->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus laporan ini? Tindakan ini tidak dapat dibatalkan.');">
                 @csrf

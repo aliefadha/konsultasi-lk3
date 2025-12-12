@@ -89,7 +89,7 @@ class ProfessionalController extends Controller
     /**
      * Display consultation chat room.
      */
-    public function konsultasiChat($id)
+    public function konsultasiChat(Request $request, $id)
     {
         $user = Auth::user();
         
@@ -104,6 +104,10 @@ class ProfessionalController extends Controller
             ->with('pengirim')
             ->ordered()
             ->get();
+
+        if ($request->ajax()) {
+            return view('profesional.konsultasi.partials.chat_messages', compact('messages'));
+        }
 
         return view('profesional.konsultasi.chat', compact('konsultasi', 'messages'));
     }

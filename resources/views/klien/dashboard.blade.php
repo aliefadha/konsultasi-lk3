@@ -73,7 +73,7 @@
                         <table class="table table-bordered" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>ID Laporan</th>
+                                    <th>No</th>
                                     <th>Jenis Kekerasan</th>
                                     <th>Tanggal Dibuat</th>
                                     <th>Status</th>
@@ -83,7 +83,7 @@
                             <tbody>
                                 @forelse($recentReports as $laporan)
                                     <tr>
-                                        <td>LPR-{{ $laporan->id }}</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ ucfirst($laporan->jenis_kekerasan) }}</td>
                                         <td>{{ $laporan->created_at }}</td>
                                         <td>

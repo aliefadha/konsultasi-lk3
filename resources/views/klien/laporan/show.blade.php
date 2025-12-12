@@ -10,7 +10,6 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <div>
             <h1 class="h3 mb-0 text-gray-800">Detail Laporan</h1>
-            <p class="text-muted mb-0">LPR-{{ str_pad($laporan->id, 3, '0', STR_PAD_LEFT) }}</p>
         </div>
         <div>
             <a href="{{ route('klien.laporan.index') }}" class="btn btn-secondary">
@@ -68,14 +67,6 @@
                             <div class="form-group mb-3">
                                 <label class="font-weight-bold text-primary">Judul Laporan</label>
                                 <div class="p-2 bg-light rounded">{{ $laporan->judul }}</div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group mb-3">
-                                <label class="font-weight-bold text-primary">ID Laporan</label>
-                                <div class="p-2 bg-light rounded">
-                                    <strong>LPR-{{ str_pad($laporan->id, 3, '0', STR_PAD_LEFT) }}</strong>
-                                </div>
                             </div>
                         </div>
                     </div>

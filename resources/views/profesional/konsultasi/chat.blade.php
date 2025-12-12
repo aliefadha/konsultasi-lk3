@@ -51,31 +51,7 @@
                 <div class="card-body p-0">
                     <!-- Chat Messages Container -->
                     <div id="chat-container" style="height: 400px; overflow-y: auto; padding: 15px;">
-                        @if($messages->count() > 0)
-                            @foreach($messages as $message)
-                                <div class="message-row mb-3 {{ $message->isFromProfesional() ? 'text-right' : '' }}">
-                                    <div class="message-bubble d-inline-block p-3 rounded {{ $message->isFromProfesional() ? 'bg-primary text-white' : 'bg-light' }}" 
-                                         style="max-width: 70%;">
-                                        <div class="message-content">
-                                            <div class="message-text">{{ $message->isi_pesan }}</div>
-                                            <small class="message-time {{ $message->isFromProfesional() ? 'text-light' : 'text-muted' }}">
-                                                {{ $message->waktu_kirim->format('H:i') }}
-                                                @if($message->isFromProfesional())
-                                                    (Saya)
-                                                @else
-                                                    (Klien)
-                                                @endif
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        @else
-                            <div class="text-center text-muted py-5">
-                                <i class="fas fa-comments fa-2x mb-2"></i>
-                                <p>Belum ada pesan. Mulai percakapan dengan klien.</p>
-                            </div>
-                        @endif
+                        @include('profesional.konsultasi.partials.chat_messages')
                     </div>
 
                     <!-- Message Input -->
@@ -202,6 +178,24 @@
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
 
+        // Fetch new messages without page reload
+        function fetchMessages() {
+            var chatContainer = document.getElementById('chat-container');
+            // Check if user is near bottom (within 100px)
+            var isNearBottom = chatContainer.scrollHeight - chatContainer.scrollTop - chatContainer.clientHeight < 100;
+
+            $.ajax({
+                url: window.location.href,
+                method: 'GET',
+                success: function(response) {
+                    $('#chat-container').html(response);
+                    if (isNearBottom) {
+                        scrollToBottom();
+                    }
+                }
+            });
+        }
+
         // Initialize scroll position
         $(document).ready(function() {
             scrollToBottom();
@@ -227,8 +221,16 @@
                     // Clear input
                     messageInput.val('');
                     
-                    // Reload page to show new message
-                    location.reload();
+                    // Fetch new messages immediately
+                    // Since we just sent a message, we definitely want to see it, so scroll to bottom
+                    $.ajax({
+                        url: window.location.href,
+                        method: 'GET',
+                        success: function(response) {
+                            $('#chat-container').html(response);
+                            scrollToBottom();
+                        }
+                    });
                 },
                 error: function(xhr) {
                     alert('Gagal mengirim pesan. Silakan coba lagi.');
@@ -237,20 +239,22 @@
                 complete: function() {
                     // Re-enable button
                     submitBtn.prop('disabled', false).html('<i class="fas fa-paper-plane"></i> Kirim');
+                    messageInput.focus();
                 }
             });
         });
 
         // Auto-refresh chat every 10 seconds to check for new messages
         setInterval(function() {
+            // Only fetch if tab is active
             if (document.hasFocus()) {
-                location.reload();
+                fetchMessages();
             }
         }, 10000);
 
-        // Submit form on Enter key (but allow Shift+Enter for new line in textarea if needed)
+        // Submit form on Enter key
         $('#messageInput').keypress(function(e) {
-            if (e.which == 13 && !e.shiftKey) {
+            if (e.which == 13) {
                 e.preventDefault();
                 $('#messageForm').submit();
             }

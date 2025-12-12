@@ -149,10 +149,6 @@
                     </div>
                     <div class="card-body">
                         <div class="mb-2">
-                            <strong>ID Laporan:</strong><br>
-                            LPR-{{ str_pad($konsultasi->laporanKasus->id, 3, '0', STR_PAD_LEFT) }}
-                        </div>
-                        <div class="mb-2">
                             <strong>Judul:</strong><br>
                             {{ Str::limit($konsultasi->laporanKasus->judul, 50) }}
                         </div>

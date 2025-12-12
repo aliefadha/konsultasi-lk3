@@ -1,6 +1,6 @@
 @extends('layouts.sbadmin')
 
-@section('title', 'Edit Laporan #' . $laporan->id . ' - LK3')
+@section('title', 'Edit Laporan - LK3')
 
 @section('description', 'Edit data laporan kasus')
 
@@ -10,9 +10,6 @@
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">
-            <i class="fas fa-edit text-primary"></i> Edit Laporan #{{ $laporan->id }}
-        </h1>
         <a href="{{ route('admin.laporan.show', $laporan->id) }}" class="btn btn-secondary">
             <i class="fas fa-arrow-left"></i> Kembali ke Detail
         </a>

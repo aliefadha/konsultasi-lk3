@@ -104,16 +104,30 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
+        $messages = [
+            'name.required' => 'Nama lengkap wajib diisi.',
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'email.unique' => 'Email sudah terdaftar.',
+            'password.required' => 'Password wajib diisi.',
+            'password.min' => 'Password minimal 6 karakter.',
+            'password.confirmed' => 'Konfirmasi password tidak cocok.',
+            'nik.required' => 'NIK wajib diisi.',
+            'nik.size' => 'NIK harus berjumlah 16 karakter.',
+            'no_telepon.size' => 'Nomor telepon harus berjumlah 13 karakter.',
+            'alamat.max' => 'Alamat tidak boleh lebih dari 500 karakter.',
+        ];
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:pengguna',
             'password' => 'required|string|min:6|confirmed',
-            'nik' => 'required|string|max:20',
-            'no_telepon' => 'nullable|string|max:20',
+            'nik' => 'required|string|size:16',
+            'no_telepon' => 'nullable|string|size:13',
             'alamat' => 'nullable|string|max:500',
             'tanggal_lahir' => 'nullable|date',
             'jenis_kelamin' => 'nullable|in:laki-laki,perempuan',
-        ]);
+        ], $messages);
 
         if ($validator->fails()) {
             return redirect()->back()
@@ -149,7 +163,7 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/masuk')->with('success', 'Berhasil keluar dari sistem.');
+        return redirect('/')->with('success', 'Berhasil keluar dari sistem.');
     }
 
     /**
