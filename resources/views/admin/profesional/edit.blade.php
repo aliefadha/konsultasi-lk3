@@ -39,23 +39,9 @@
             <div class="row">
                 <div class="col-md-6">
                     <p><strong>Email:</strong> {{ $profesional->email }}</p>
-                    <p><strong>Status:</strong> 
-                        @if($profesional->status == 'aktif')
-                            <span class="badge badge-success">Aktif</span>
-                        @elseif($profesional->status == 'menunggu_tinjauan')
-                            <span class="badge badge-warning">Menunggu Tinjauan</span>
-                        @elseif($profesional->status == 'nonaktif')
-                            <span class="badge badge-danger">Nonaktif</span>
-                        @else
-                            <span class="badge badge-secondary">{{ ucfirst($profesional->status) }}</span>
-                        @endif
-                    </p>
                 </div>
                 <div class="col-md-6">
-                    <p><strong>Bergabung:</strong> {{ $profesional->created_at->format('d/m/Y H:i') }}</p>
-                    @if($profesional->email_verified_at)
-                        <p><strong>Terverifikasi:</strong> {{ $profesional->email_verified_at->format('d/m/Y H:i') }}</p>
-                    @endif
+                    <p><strong>Bergabung:</strong> {{ $profesional->created_at->setTimezone('Asia/Jakarta')->format('d/m/Y H:i') }}</p>
                 </div>
             </div>
         </div>

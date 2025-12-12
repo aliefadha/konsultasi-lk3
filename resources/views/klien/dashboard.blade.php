@@ -85,7 +85,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ ucfirst($laporan->jenis_kekerasan) }}</td>
-                                        <td>{{ $laporan->created_at }}</td>
+                                        <td>{{ $laporan->created_at->setTimezone('Asia/Jakarta')->format('d M Y H:i') }}</td>
                                         <td>
                                             @if($laporan->status_laporan == 'menunggu_tinjauan')
                                                 <span class="badge badge-warning">Menunggu Tinjauan</span>

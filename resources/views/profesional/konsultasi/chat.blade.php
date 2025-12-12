@@ -42,9 +42,9 @@
                         @endif
                     </h6>
                     <small class="text-muted">
-                        Mulai: {{ $konsultasi->tanggal_mulai ? $konsultasi->tanggal_mulai->format('d M Y H:i') : '-' }}
+                        Mulai: {{ $konsultasi->tanggal_mulai ? $konsultasi->tanggal_mulai->setTimezone('Asia/Jakarta')->format('d M Y H:i') : '-' }}
                         @if($konsultasi->tanggal_selesai)
-                            | Selesai: {{ $konsultasi->tanggal_selesai->format('d M Y H:i') }}
+                            | Selesai: {{ $konsultasi->tanggal_selesai->setTimezone('Asia/Jakarta')->format('d M Y H:i') }}
                         @endif
                     </small>
                 </div>
@@ -125,7 +125,7 @@
                     <div class="card-body">
                         <p class="mb-0">{{ $konsultasi->catatan_akhir }}</p>
                         <small class="text-muted">
-                            Ditambahkan pada: {{ $konsultasi->tanggal_selesai ? $konsultasi->tanggal_selesai->format('d M Y H:i') : '-' }}
+                            Ditambahkan pada: {{ $konsultasi->tanggal_selesai ? $konsultasi->tanggal_selesai->setTimezone('Asia/Jakarta')->format('d M Y H:i') : '-' }}
                         </small>
                     </div>
                 </div>

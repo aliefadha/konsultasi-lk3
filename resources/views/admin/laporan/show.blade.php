@@ -123,7 +123,7 @@
                             <label class="font-weight-bold">Tanggal Kejadian:</label>
                             <p>
                                 @if($laporan->tanggal_kejadian)
-                                    {{ $laporan->tanggal_kejadian->format('d/m/Y') }}
+                                    {{ $laporan->tanggal_kejadian->setTimezone('Asia/Jakarta')->format('d/m/Y') }}
                                     <small class="text-muted">({{ $laporan->tanggal_kejadian->diffForHumans() }})</small>
                                 @else
                                     Tidak disebutkan
@@ -132,7 +132,7 @@
                         </div>
                         <div class="col-md-6">
                             <label class="font-weight-bold">Waktu Pelaporan:</label>
-                            <p>{{ $laporan->created_at->format('d/m/Y H:i') }}</p>
+                            <p>{{ $laporan->created_at->setTimezone('Asia/Jakarta')->format('d/m/Y H:i') }}</p>
                         </div>
                         <div class="col-12">
                             <label class="font-weight-bold">Deskripsi Kasus:</label>
@@ -175,7 +175,7 @@
                                                     <div class="mb-2">
                                                         <small class="text-muted">
                                                             <i class="fas fa-hdd"></i> {{ $lampiran->formatted_size }}<br>
-                                                            <i class="fas fa-calendar"></i> {{ $lampiran->created_at->format('d/m/Y H:i') }}
+                                                            <i class="fas fa-calendar"></i> {{ $lampiran->created_at->setTimezone('Asia/Jakarta')->format('d/m/Y H:i') }}
                                                         </small>
                                                     </div>
                                                     <div class="btn-group" role="group">
@@ -235,7 +235,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="font-weight-bold">Tanggal Mulai:</label>
-                                <p>{{ $laporan->sesiKonsultasi->tanggal_mulai->format('d/m/Y H:i') }}</p>
+                                <p>{{ $laporan->sesiKonsultasi->tanggal_mulai->setTimezone('Asia/Jakarta')->format('d/m/Y H:i') }}</p>
                             </div>
                             @if($laporan->sesiKonsultasi->profesional)
                                 <div class="col-12">

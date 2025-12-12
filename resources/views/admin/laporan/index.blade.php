@@ -83,7 +83,7 @@
                     <tbody>
                         @forelse($laporan as $report)
                             <tr>
-                                <td>{{ $report->id }}</td>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>
                                     <strong>{{ $report->pengguna->name ?? 'Unknown' }}</strong><br>
                                     <small class="text-muted">{{ $report->pengguna->email ?? '' }}</small>
@@ -141,7 +141,7 @@
                                         </span>
                                     @endif
                                 </td>
-                                <td>{{ $report->created_at->format('d/m/Y H:i') }}</td>
+                                <td>{{ $report->created_at->setTimezone('Asia/Jakarta')->format('d/m/Y H:i') }}</td>
                                 <td>
                                     <a href="{{ route('admin.laporan.show', $report->id) }}" 
                                        class="btn btn-primary btn-sm" title="Lihat Detail">

@@ -179,11 +179,11 @@
                         
                         <div class="text-left">
                             <small class="text-muted">
-                                <strong>Bergabung:</strong> {{ $user->created_at->format('d F Y') }}
+                                <strong>Bergabung:</strong> {{ $user->created_at->setTimezone('Asia/Jakarta')->format('d F Y') }}
                             </small><br>
                             <small class="text-muted">
                                 <strong>Terakhir diperbarui:</strong> 
-                                {{ $user->updated_at->format('d F Y H:i') }}
+                                {{ $user->updated_at->setTimezone('Asia/Jakarta')->format('d F Y H:i') }}
                             </small>
                         </div>
                     </div>

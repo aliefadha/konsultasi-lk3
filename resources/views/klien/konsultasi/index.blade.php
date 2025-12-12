@@ -51,7 +51,7 @@
                     <table class="table table-bordered" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>ID Konsultasi</th>
+                                <th>No</th>
                                 <th>Profesional</th>
                                 <th>Laporan</th>
                                 <th>Status</th>
@@ -64,7 +64,7 @@
                             @foreach($konsultasis as $konsultasi)
                                 <tr>
                                     <td>
-                                        <strong>KON-{{ str_pad($konsultasi->id, 3, '0', STR_PAD_LEFT) }}</strong>
+                                        <strong>{{ $loop->iteration }}</strong>
                                     </td>
                                     <td>
                                         <div class="font-weight-bold">{{ $konsultasi->profesional->nama ?? 'Belum ditugaskan' }}</div>
@@ -75,7 +75,6 @@
                                     <td>
                                         @if($konsultasi->laporanKasus)
                                             <div class="font-weight-bold">{{ Str::limit($konsultasi->laporanKasus->judul, 40) }}</div>
-                                            <small class="text-muted">LPR-{{ str_pad($konsultasi->laporanKasus->id, 3, '0', STR_PAD_LEFT) }}</small>
                                         @else
                                             <span class="text-muted">Tidak ada</span>
                                         @endif
@@ -100,20 +99,14 @@
                                     </td>
                                     <td>
                                         @if($konsultasi->created_at)
-                                            <div>{{ \Carbon\Carbon::parse($konsultasi->created_at)->format('d/m/Y') }}</div>
-                                            <small class="text-muted">
-                                                {{ \Carbon\Carbon::parse($konsultasi->created_at)->diffForHumans() }}
-                                            </small>
+                                            <div>{{ \Carbon\Carbon::parse($konsultasi->created_at)->setTimezone('Asia/Jakarta')->format('d/m/Y') }}</div>
                                         @else
                                             <span class="text-muted">-</span>
                                         @endif
                                     </td>
                                     <td>
                                         @if($konsultasi->updated_at)
-                                            <div>{{ \Carbon\Carbon::parse($konsultasi->updated_at)->format('d/m/Y H:i') }}</div>
-                                            <small class="text-muted">
-                                                {{ \Carbon\Carbon::parse($konsultasi->updated_at)->diffForHumans() }}
-                                            </small>
+                                            <div>{{ \Carbon\Carbon::parse($konsultasi->updated_at)->setTimezone('Asia/Jakarta')->format('d/m/Y H:i') }}</div>
                                         @else
                                             <span class="text-muted">-</span>
                                         @endif

@@ -89,7 +89,7 @@
                                                     <span class="text-muted">-</span>
                                                 @endif
                                             </td>
-                                            <td>{{ $sesi->tanggal_mulai ? $sesi->tanggal_mulai->format('d M Y H:i') : '-' }}</td>
+                                            <td>{{ $sesi->tanggal_mulai ? $sesi->tanggal_mulai->setTimezone('Asia/Jakarta')->format('d M Y H:i') : '-' }}</td>
                                             <td>
                                                 @if($sesi->status_sesi == 'aktif')
                                                     <span class="badge badge-success">Aktif</span>

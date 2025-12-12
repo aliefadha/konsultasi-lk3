@@ -141,7 +141,7 @@
                     <table class="table table-bordered" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>ID Laporan</th>
+                                <th>No</th>
                                 <th>Judul</th>
                                 <th>Jenis Kekerasan</th>
                                 <th>Tanggal Kejadian</th>
@@ -154,9 +154,7 @@
                         <tbody>
                             @foreach($laporans as $laporan)
                                 <tr>
-                                    <td>
-                                        <strong>LPR-{{ str_pad($laporan->id, 3, '0', STR_PAD_LEFT) }}</strong>
-                                    </td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>
                                         <div class="font-weight-bold">{{ Str::limit($laporan->judul, 50) }}</div>
                                         <small class="text-muted">
@@ -190,9 +188,6 @@
                                     </td>
                                     <td>
                                         <div>{{ \Carbon\Carbon::parse($laporan->tanggal_kejadian)->format('d/m/Y') }}</div>
-                                        <small class="text-muted">
-                                            {{ \Carbon\Carbon::parse($laporan->tanggal_kejadian)->diffForHumans() }}
-                                        </small>
                                     </td>
                                     <td>
                                         @switch($laporan->status_laporan)
@@ -247,9 +242,6 @@
                                     </td>
                                     <td>
                                         <div>{{ \Carbon\Carbon::parse($laporan->created_at)->format('d/m/Y') }}</div>
-                                        <small class="text-muted">
-                                            {{ \Carbon\Carbon::parse($laporan->created_at)->diffForHumans() }}
-                                        </small>
                                     </td>
                                     <td>
                                         <div class="btn-group" role="group">

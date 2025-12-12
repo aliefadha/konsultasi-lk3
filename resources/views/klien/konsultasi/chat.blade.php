@@ -56,7 +56,7 @@
                                     <div class="message-header">
                                         <strong>{{ $message->pengirim->name ?? 'Unknown' }}</strong>
                                         <small class="text-muted">
-                                            {{ \Carbon\Carbon::parse($message->created_at)->format('d/m/Y H:i') }}
+                                            {{ \Carbon\Carbon::parse($message->created_at)->setTimezone('Asia/Jakarta')->format('d/m/Y H:i') }}
                                         </small>
                                     </div>
                                     <div class="message-body">
@@ -127,7 +127,7 @@
                         <div class="mb-2">
                             <strong>Mulai Konsultasi:</strong><br>
                             <small class="text-muted">
-                                {{ \Carbon\Carbon::parse($konsultasi->created_at)->format('d F Y, H:i') }}
+                                {{ \Carbon\Carbon::parse($konsultasi->created_at)->setTimezone('Asia/Jakarta')->format('d F Y, H:i') }}
                             </small>
                         </div>
                     @else

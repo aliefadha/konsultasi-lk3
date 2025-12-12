@@ -6,7 +6,7 @@
                 <div class="message-content">
                     <div class="message-text">{{ $message->isi_pesan }}</div>
                     <small class="message-time {{ $message->isFromProfesional() ? 'text-light' : 'text-muted' }}">
-                        {{ $message->waktu_kirim->format('H:i') }}
+                        {{ $message->waktu_kirim->setTimezone('Asia/Jakarta')->format('H:i') }}
                         @if($message->isFromProfesional())
                             (Saya)
                         @else

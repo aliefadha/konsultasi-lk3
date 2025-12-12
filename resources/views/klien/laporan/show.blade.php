@@ -114,11 +114,7 @@
                                 <label class="font-weight-bold text-primary">Tanggal Kejadian</label>
                                 <div class="p-2 bg-light rounded">
                                     <i class="fas fa-calendar"></i> 
-                                    {{ \Carbon\Carbon::parse($laporan->tanggal_kejadian)->format('d F Y') }}
-                                    <br>
-                                    <small class="text-muted">
-                                        ({{ \Carbon\Carbon::parse($laporan->tanggal_kejadian)->diffForHumans() }})
-                                    </small>
+                                    {{ \Carbon\Carbon::parse($laporan->tanggal_kejadian)->setTimezone('Asia/Jakarta')->format('d F Y') }}
                                 </div>
                             </div>
                         </div>
@@ -127,11 +123,7 @@
                                 <label class="font-weight-bold text-primary">Tanggal Dibuat</label>
                                 <div class="p-2 bg-light rounded">
                                     <i class="fas fa-clock"></i> 
-                                    {{ \Carbon\Carbon::parse($laporan->created_at)->format('d F Y, H:i') }}
-                                    <br>
-                                    <small class="text-muted">
-                                        ({{ \Carbon\Carbon::parse($laporan->created_at)->diffForHumans() }})
-                                    </small>
+                                    {{ \Carbon\Carbon::parse($laporan->created_at)->setTimezone('Asia/Jakarta')->format('d F Y, H:i') }}
                                 </div>
                             </div>
                         </div>
